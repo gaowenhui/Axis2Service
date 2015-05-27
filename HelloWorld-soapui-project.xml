@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="HelloWorld" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="HelloWorldSoap11Binding" type="wsdl" bindingName="{http://helloworld.axis2.sky.org}HelloWorldSoap11Binding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8088/Axis2Service/services/HelloWorld?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8088/Axis2Service/services/HelloWorld.HelloWorldHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:sayHello" name="sayHello" bindingOperationName="sayHello" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/Axis2Service/services/HelloWorld.HelloWorldHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="http://helloworld.axis2.sky.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hel:sayHello>
+         <!--Optional:-->
+         <hel:sayHello>333</hel:sayHello>
+      </hel:sayHello>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:sayHello"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="HelloWorldSoap12Binding" type="wsdl" bindingName="{http://helloworld.axis2.sky.org}HelloWorldSoap12Binding" soapVersion="1_2" anonymous="optional" definition="http://localhost:8088/Axis2Service/services/HelloWorld?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8088/Axis2Service/services/HelloWorld?wsdl"><con:part><con:url>http://localhost:8088/Axis2Service/services/HelloWorld?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://helloworld.axis2.sky.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://helloworld.axis2.sky.org" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>HelloWorld</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://helloworld.axis2.sky.org">
+      <xs:element name="HelloWorldXMLStreamException">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="XMLStreamException" nillable="true" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sayHello">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sayHello" nillable="true" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sayHelloResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="sayHelloRequest">
+    <wsdl:part name="parameters" element="ns:sayHello"/>
+  </wsdl:message>
+  <wsdl:message name="sayHelloResponse">
+    <wsdl:part name="parameters" element="ns:sayHelloResponse"/>
+  </wsdl:message>
+  <wsdl:message name="HelloWorldXMLStreamException">
+    <wsdl:part name="parameters" element="ns:HelloWorldXMLStreamException"/>
+  </wsdl:message>
+  <wsdl:portType name="HelloWorldPortType">
+    <wsdl:operation name="sayHello">
+      <wsdl:input message="ns:sayHelloRequest" wsaw:Action="urn:sayHello"/>
+      <wsdl:output message="ns:sayHelloResponse" wsaw:Action="urn:sayHelloResponse"/>
+      <wsdl:fault message="ns:HelloWorldXMLStreamException" name="HelloWorldXMLStreamException" wsaw:Action="urn:sayHelloHelloWorldXMLStreamException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorldSoap11Binding" type="ns:HelloWorldPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="urn:sayHello" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="HelloWorldXMLStreamException">
+        <soap:fault use="literal" name="HelloWorldXMLStreamException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HelloWorldSoap12Binding" type="ns:HelloWorldPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="sayHello">
+      <soap12:operation soapAction="urn:sayHello" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="HelloWorldXMLStreamException">
+        <soap12:fault use="literal" name="HelloWorldXMLStreamException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HelloWorldHttpBinding" type="ns:HelloWorldPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="sayHello">
+      <http:operation location="sayHello"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorld">
+    <wsdl:port name="HelloWorldHttpSoap11Endpoint" binding="ns:HelloWorldSoap11Binding">
+      <soap:address location="http://localhost:8088/Axis2Service/services/HelloWorld.HelloWorldHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="HelloWorldHttpSoap12Endpoint" binding="ns:HelloWorldSoap12Binding">
+      <soap12:address location="http://localhost:8088/Axis2Service/services/HelloWorld.HelloWorldHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="HelloWorldHttpEndpoint" binding="ns:HelloWorldHttpBinding">
+      <http:address location="http://localhost:8088/Axis2Service/services/HelloWorld.HelloWorldHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8088/Axis2Service/services/HelloWorld.HelloWorldHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:sayHello" name="sayHello" bindingOperationName="sayHello" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/Axis2Service/services/HelloWorld.HelloWorldHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:hel="http://helloworld.axis2.sky.org">
+   <soap:Header/>
+   <soap:Body>
+      <hel:sayHello>
+         <!--Optional:-->
+         <hel:sayHello>2323的方法上的的说法</hel:sayHello>
+      </hel:sayHello>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:sayHello"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
